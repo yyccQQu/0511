@@ -15,8 +15,7 @@ import Home from 'page/home/index.jsx';
 export default class App extends Component {
   render() {
     return (
-      <div>nidema</div>
-
+        <Home/>
     )
   }
 }

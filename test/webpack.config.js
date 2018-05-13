@@ -2,12 +2,16 @@
 * @Author: Rosen
 * @Date:   2018-01-13 11:26:52
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-05-13 11:01:58
+ * @Last Modified time: 2018-05-13 14:43:59
 */
 const path              = require('path');
 const webpack           = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+function resolve(dir) {
+    return path.join(__dirname, '..', dir)
+}
 
 let WEBPACK_ENV = process.env.WEBPACK_ENV || 'dev';
 console.log(WEBPACK_ENV); 
@@ -20,12 +24,22 @@ module.exports = {
         //     ? '/dist/' : '//s.jianliwu.com/admin-v2-fe/dist/',
         filename: 'js/app.js'
     },
+    // resolve: {
+    //     alias : {
+    //         page        : path.resolve(__dirname, 'src/page'),
+    //         component   : path.resolve(__dirname, 'src/component'),
+    //         util        : path.resolve(__dirname, 'src/util'),
+    //         service     : path.resolve(__dirname, 'src/service')
+    //     }
+    // },
     resolve: {
-        alias : {
-            page        : path.resolve(__dirname, 'src/page'),
-            component   : path.resolve(__dirname, 'src/component'),
-            util        : path.resolve(__dirname, 'src/util'),
-            service     : path.resolve(__dirname, 'src/service')
+        extensions: ['.js', '.jsx', '.json'],
+        alias: {
+            '@': resolve('src'),
+            'page': path.resolve(__dirname, 'src/page'),
+            'component': resolve('src/component'),
+            'util': resolve('src/util'),
+            'service': resolve('src/service')
         }
     },
     module: {
@@ -37,10 +51,9 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['env', 'react', 'es2015']
+                        presets: ['es2015', 'react','env']
                     }
                 }
-                
             },
             // css文件的处理
             {
