@@ -10,12 +10,20 @@ import {
 
 import "font-awesome/css/font-awesome.min.css";
 
+import Layout from 'component/layout/index.jsx';
 import Home from 'page/home/index.jsx';
 
 export default class App extends Component {
   render() {
     return (
-        <Home/>
+      <Router>
+        <Layout>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Redirect from="*" to="/" />
+          </Switch>
+        </Layout>
+      </Router>
     )
   }
 }

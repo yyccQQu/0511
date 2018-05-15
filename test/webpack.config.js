@@ -2,7 +2,7 @@
 * @Author: Rosen
 * @Date:   2018-01-13 11:26:52
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-05-13 14:43:59
+ * @Last Modified time: 2018-05-13 15:44:17
 */
 const path              = require('path');
 const webpack           = require('webpack');
@@ -35,11 +35,11 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
         alias: {
-            '@': resolve('src'),
+            '@': path.resolve(__dirname, 'src'),
             'page': path.resolve(__dirname, 'src/page'),
-            'component': resolve('src/component'),
-            'util': resolve('src/util'),
-            'service': resolve('src/service')
+            'component': path.resolve(__dirname, 'src/component'),
+            'util': path.resolve(__dirname, 'src/util'),
+            'service': path.resolve(__dirname, 'src/service')
         }
     },
     module: {
