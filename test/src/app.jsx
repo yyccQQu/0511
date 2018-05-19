@@ -15,16 +15,16 @@ import Home from 'page/home/index.jsx';
 
 export default class App extends Component {
   render() {
-    return (
-      <Router>
+    return <Router>
         <Layout>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Redirect from="*" to="/" />
+            <Route path="/product" component={Home} />
+            <Route path="/product-category" component={Home} />
+            {/* <Redirect from="*" to="/" /> */}
           </Switch>
         </Layout>
-      </Router>
-    )
+      </Router>;
   }
 }
 
