@@ -2,7 +2,7 @@
 * @Author: Rosen
 * @Date:   2018-01-13 11:26:52
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-05-13 15:44:17
+ * @Last Modified time: 2018-05-19 17:21:01
 */
 const path              = require('path');
 const webpack           = require('webpack');
@@ -118,15 +118,15 @@ module.exports = {
         historyApiFallback: {
             index: '/dist/index.html'
         },
-        // proxy : {
-        //     '/manage' : {
-        //         target: 'http://admintest.happymmall.com',
-        //         changeOrigin : true
-        //     },
-        //     '/user/logout.do' : {
-        //         target: 'http://admintest.happymmall.com',
-        //         changeOrigin : true
-        //     }
-        // }
+        proxy : {
+            '/manage' : {
+                target: 'http://admintest.happymmall.com',
+                changeOrigin : true
+            },
+            '/user/logout.do' : {
+                target: 'http://admintest.happymmall.com',
+                changeOrigin : true
+            }
+        }
     }
 };
