@@ -11,10 +11,10 @@ const _user = new User();
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      username: "",
-      password: ""
-    };
+    this.state = { username: "", password: "", redirect: _mm.getUrlParam("redirect") || "/" };
+  }
+  componentWillMount() {
+    document.title = '登录 - MMALL ADMIN';
   }
   // 当用户名发生改变
   onInputChange(e) {
@@ -26,14 +26,24 @@ class Login extends Component {
   }
   // 当用户提交表单
   onSubmit(){
-      _user
-        .login({
-          username: this.state.username,
-          password: this.state.password
-        })
-        .then(res => {
-          console.log(1234)
-        }, err => {});
+    let loginInfo = {
+      username: this.state.username,
+      password: this.state.password
+    },
+      checkResult = _user.checkLoginInfo(loginInfo);
+    // 验证通过
+    if (checkResult.status) {
+      _user.login(loginInfo).then((res) => {
+        _mm.setStorage('userInfo', res);
+        this.props.history.push(this.state.redirect);
+      }, (errMsg) => {
+        _mm.errorTips(errMsg);
+      });
+    }
+    // 验证不通过
+    else {
+      _mm.errorTips(checkResult.msg);
+    }
   }
 
   onInputKeyUp(e){
