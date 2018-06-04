@@ -1,9 +1,3 @@
-/*
-* @Author: Rosen
-* @Date:   2018-02-01 16:19:36
- * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-05-26 11:15:25
-*/
 import React from 'react';
 import MUtil from 'util/mm.jsx'
 import Product from 'service/product-service.jsx'
